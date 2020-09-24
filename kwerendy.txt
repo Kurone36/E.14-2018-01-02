@@ -1,0 +1,7 @@
+1. SELECT id, imie, nazwisko, email FROM `uzytkownik` WHERE `uzytkownik`.`id` < 4
+
+2. SELECT `ogloszenie`.`tytul` FROM `ogloszenie` WHERE `ogloszenie`.`uzytkownik_id` = 1
+
+3. CREATE USER 'admin'@'localhost' IDENTIFIED BY 'zaq1@' 
+
+4. GRANT SELECT, ALTER ON ogloszenia.ogloszenie TO 'andrzej'@'localhost';
