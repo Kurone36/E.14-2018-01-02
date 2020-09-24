@@ -11,15 +11,19 @@
 	</section>
 	<section id="left">
 		<h2>Ogłoszeniodawcy</h2>
-		<?php 
-			$id_polaczenia = mysqli_connect('localhost', 'root', '', 'ogloszenia');
-			$stan1 = mysqli_select_db($id_polaczenia, 'ogloszenia');
-				if($stan1 == true) echo "wybrano baze ogloszenia";
-				else echo "nie wybrano";
-			
-			
-			
-			mysqli_close($id_polaczenia);
+		<?php
+			$connect = mysqli_connect('localhost','root','','ogloszenia');
+			$ask = "SELECT `uzytkownik`.`id`, `uzytkownik`.`imie`, `uzytkownik`.`nazwisko`, `uzytkownik`.`email`, `ogloszenie`.`tytul` FROM `uzytkownik` inner join `ogloszenie` ON `uzytkownik`.`id` = `ogloszenie`.`uzytkownik_id` WHERE `uzytkownik`.`id` < 4 GROUP by `uzytkownik`.`id`";
+			$result = mysqli_query($connect, $ask);
+			while ($line=mysqli_fetch_row($result)) 
+			{
+				echo '<h3>'.$line[0].' '. $line[1].' '.$line[2].'</h3>';
+				echo '<p>'.$line[3].'</p>';
+				echo '<p>Ogłoszenie: '.$line[4];
+			}
+
+			mysqli_close($connect);
+
 		?>
 	</section>
 	<section id="right">
